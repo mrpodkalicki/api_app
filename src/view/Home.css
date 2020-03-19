@@ -1,0 +1,28 @@
+.body{
+    font-size: 10px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+
+}
+.container__form{
+    margin:5rem 0 0 0 ;
+    position: relative;
+
+
+}
+.container__form__input{
+    /*border: solid red;*/
+}
+.container__form__btn{
+    position: absolute;
+    right: 1px;
+}
+
+.calendar{
+
+
+}
