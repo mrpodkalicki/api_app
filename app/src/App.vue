@@ -5,21 +5,19 @@
 </template>
 
 <style lang="scss">
-   
-#app { 
+#app {
   display: flex;
   justify-content: center;
   align-content: center;
   // color: $primary;
-
 }
 
-html {
+html,
+body {
   font-size: 10px;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
 </style>
 

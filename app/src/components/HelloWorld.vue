@@ -7,11 +7,11 @@
 <!--    <div class="container__list">-->
 <!--      Prop: {{ message }}-->
 <!--      {{test}}-->
-<!--      <div class="container__list-item" v-for="(item, index) in list" :key="index">-->
-<!--        <span :class="`container__list-item&#45;&#45;${item}`">-->
-<!--        -->
-<!--        {{ item }}</span>-->
-<!--      </div>-->
+     <div class="container__list-item" v-for="(item, index) in list" :key="index">-->
+       <span :class="`container__list-item&#45;&#45;${item}`">
+      
+       {{ item }}</span>
+  </div>
 <!--    </div>-->
   </div>
 </template>
