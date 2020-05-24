@@ -2,10 +2,17 @@
   <div class="score">
     <Bar />
     <div class="score__square-container">
-      <div v-if="!matchDate">loading</div>
-      <div v-if="matchDate" class="score__center-square">
+      <div
+        v-loading="loading"
+        element-loading-text="Loading..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
+        class=" score__center-square"
+      >
         <div class="score__header">
-          <h3 class="score__header__text score__header__element">{{pickedDate}}</h3>
+          <h3 class="score__header__text score__header__element">
+            {{ pickedDate }}
+          </h3>
           <img
             src="../assets/icons/home/KALENDARZ.png"
             class="score__header__icon score__header__element"
@@ -33,13 +40,17 @@ import Bar from "../components/Bar.component.vue";
 import Cell from "../components/Cell.component.vue";
 import Footer from "../components/Footer.component.vue";
 import axios from "axios";
+import Vue from "vue";
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 
+Vue.use(ElementUI);
 export default {
   name: "Score",
   components: {
     Bar,
     Cell,
-    Footer
+    Footer,
   },
   props: {
     //  TeamOne:String
@@ -48,28 +59,30 @@ export default {
   data() {
     return {
       pickedDate: "10-10-2020",
-      matchDate: null
+      matchDate: null,
+      loading: true,
     };
+  },
+  methods: {
+    changeLoading() {
+      this.loading = false;
+    },
   },
   beforeRouteEnter(to, from, next) {
     next();
     console.log(from, "from");
   },
   created() {
-    //    this.matchDate = this.$route.params.apiDate;
     axios
       .get("http://127.0.0.1:5000/prediction/112119")
       .then(
-        response => (
-          (this.matchDate = response.data["result"]),
-          console.log(response, "resr")
+        (response) => (
+          (this.matchDate = response.data["result"]), (this.loading = false)
         )
       );
-    //    console.log(this.$route.params.apiDate)
-  }
+  },
 };
 </script>
-
 <style lang="scss" scoped>
 .score {
   // border: solid red 5px;

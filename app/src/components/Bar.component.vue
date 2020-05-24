@@ -1,12 +1,10 @@
 <template>
   <div class="bar">
-    <!-- class="bar" -->
     <ul class="bar__list">
-      <!-- class="bar__list" -->
       <div class="bar__list__container_element" v-for="(item, index) in navBarDate" :key="index">
-        <router-link :to = "`${item.root}`">
-          <li class="bar__list__element">{{item["text"]}}</li>
-          <div :class="`bar__list__icon  ${item.className}`"></div>
+        <li class="bar__list__element">{{ item["text"] }}</li>
+        <div :class="`bar__list__icon  ${item.className}`"></div>
+        <router-link class="bar__list__router-list" :to="`${item.root}`">
           <a class="bar__list__link" href="#"></a>
         </router-link>
       </div>
@@ -19,23 +17,22 @@ export default {
   name: "Bar",
   data() {
     return {
-      navBarDate:[
+      navBarDate: [
         {
-          text:"PREDYKTOR",
-          className:"bar__list__predict_icon",
+          text: "PREDYKTOR",
+          className: "bar__list__predict_icon",
           root: "/"
         },
         {
-          text:"INFORMACJE",
-          className:"bar__list__info_icon",
-          root:"/"
+          text: "INFORMACJE",
+          className: "bar__list__info_icon",
+          root: "/"
         },
         {
-          text:"KOSZYKÓWKA",
-          className:"bar__list__football_icon",
-          root:"/"
+          text: "KOSZYKÓWKA",
+          className: "bar__list__football_icon",
+          root: "/"
         }
-
       ],
 
       menuText: ["PREDYKTOR", "INFORMACJE", "KOSZYKÓWKA"],
@@ -49,7 +46,7 @@ export default {
 };
 </script>
 
-<style  lang="scss" scoped>
+<style lang="scss" scoped>
 .bar {
   width: 100%;
   display: flex;
@@ -58,8 +55,6 @@ export default {
   height: 10vh;
 
   &__list {
-    // border: solid red;
-    width: 50%;
     list-style-type: none;
     display: flex;
     flex-direction: row;
@@ -81,6 +76,11 @@ export default {
       position: relative;
     }
 
+    &__router-list {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
     &__icon {
       width: 3rem;
       height: 3rem;
