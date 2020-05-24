@@ -22,16 +22,18 @@
           </div>
         </div>
         <div class="center-square__btn-container center-square__child">
-           <router-link to="/score">
-              <button  to="/score" class="center-square__btn center-square__item">
+           
+            <router-link   :to="{ name:'Score', params:{ apiDate: apiMatchDate}}">
+              <button  v-on:click="feachMatchDate" to="/score" class="center-square__btn center-square__item">
                 <a class="center-square__btn__link" href="#"></a>
                 <div class="center-square__btn__text-wraper">
                   <span>POKAZ</span>
                   <span>MECZE</span> 
                 </div>
               </button>
-           </router-link>
-          
+              </router-link>
+           
+          <!-- {{apiMatchDate}} -->
         </div>
       </div>
     </div>
@@ -45,7 +47,6 @@
 // jak dodajesz komponent to -> bar.component.vue
 
 import Bar from "../components/Bar.component.vue";
-
 import Footer from "../components/Footer.component.vue";
 
 export default {
@@ -70,16 +71,23 @@ export default {
           class: "year"
         }
       ],
-      pickedDate:"10-10-2020"
+      pickedDate:"10-10-2020",
+      apiMatchDate : null,
     };
   },
  
   methods: {
-    testHandler(value) {
-      this.variable = value;
+    feachMatchDate() {
+      // this.variable = value;
+      console.log('siema')
+      //  axios.get('http://127.0.0.1:5000/prediction/121919')
+      // .then(response => (response = , console.log(response)))
+
+      
     }
   }
 };
+
 </script>
 
 <style  lang="scss" scoped>

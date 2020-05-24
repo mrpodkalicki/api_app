@@ -1,12 +1,26 @@
+
 <template>
     <div class="cell">
+        {{TeamHome}}
+        {{TeamAway}}
+        {{Percentage}}
     </div>
 </template>
 
 <script>
     export default {
-        name: "Cell"
+        name: "Cell",
+
+        props: {
+            TeamHome:String,
+            TeamAway: String,
+            Percentage:String,
+        },
+        
     }
+
+    
+   
 </script>
 
 <style lang="scss" scoped>
