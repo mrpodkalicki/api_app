@@ -1,8 +1,6 @@
-
-
 <template>
   <div class="home-view">
-    <Bar />
+    <Bar class="home-view__bar" />
     <div class="home-view__center-square-container">
       <div class="home-view__center-square">
         <div class="center-square__header-container center-square__child">
@@ -16,36 +14,42 @@
             <input
               v-for="(item, index) in dateTypes"
               :key="index"
-              :class="`center-square__input center-square__input__${item.class}`"
+              :class="
+                `center-square__input center-square__input__${item.class}`
+              "
               :placeholder="`${item.label}`"
+              v-model="item.inputValue"
             />
           </div>
         </div>
         <div class="center-square__btn-container center-square__child">
-           
-            <router-link   :to="{ name:'Score', params:{ apiDate: apiMatchDate}}">
-              <button  v-on:click="feachMatchDate" to="/score" class="center-square__btn center-square__item">
-                <a class="center-square__btn__link" href="#"></a>
-                <div class="center-square__btn__text-wraper">
-                  <span>POKAZ</span>
-                  <span>MECZE</span> 
-                </div>
-              </button>
-              </router-link>
-           
-          <!-- {{apiMatchDate}} -->
+          <router-link
+            :to="{
+              name: 'Score',
+              params: {
+                allValueInputs:
+                  dateTypes[0].inputValue +
+                  dateTypes[1].inputValue +
+                  dateTypes[2].inputValue,
+              },
+            }"
+          >
+            <button to="/score" class="center-square__btn center-square__item">
+              <a class="center-square__btn__link" href="#"></a>
+              <div class="center-square__btn__text-wraper">
+                <span>POKAZ</span>
+                <span>MECZE</span>
+              </div>
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
-    <Footer />
+    <Footer class="home-view__footer" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// jak towrzysz widok to -> home.view.vue
-// jak dodajesz komponent to -> bar.component.vue
-
 import Bar from "../components/Bar.component.vue";
 import Footer from "../components/Footer.component.vue";
 
@@ -53,60 +57,63 @@ export default {
   name: "Home",
   components: {
     Bar,
-    Footer
+    Footer,
   },
   data() {
     return {
       dateTypes: [
         {
-          label: 'MM',
-          class: "month"
+          label: "MM",
+          class: "month",
+          inputValue: "",
         },
         {
-          label: 'DD',
-          class: "day"
+          label: "DD",
+          class: "day",
+          inputValue: "",
         },
         {
-          label: 'YYYY',
-          class: "year"
-        }
+          label: "YYYY",
+          class: "year",
+          inputValue: "",
+        },
       ],
-      pickedDate:"10-10-2020",
-      apiMatchDate : null,
+      pickedDate: "10-10-2020",
+      apiMatchDate: null,
+      allValueInputs: this.dateTypes,
     };
   },
- 
-  methods: {
-    feachMatchDate() {
-      // this.variable = value;
-      console.log('siema')
-      //  axios.get('http://127.0.0.1:5000/prediction/121919')
-      // .then(response => (response = , console.log(response)))
 
-      
-    }
-  }
+  methods: {},
 };
-
 </script>
 
-<style  lang="scss" scoped>
+<style lang="scss" scoped>
 .home-view {
   background-image: url("../assets/img/background.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
   width: 100%;
   height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
   overflow: hidden;
-
-  &__center-square-container{
+  &__bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &__center-square-container {
     height: 70vh; // inny niz %
     display: flex;
     justify-content: center;
     align-items: center;
   }
   &__center-square {
-    margin: 10rem 0 0 0;
+    margin: 20rem 0 0 0;
     width: 48rem;
     height: 44rem;
     left: 50rem;
@@ -119,10 +126,14 @@ export default {
     align-items: center;
     flex-direction: column;
   }
+  &__footer {
+    position: absolute;
+    bottom: 0px;
+  }
 }
 
 .center-square {
-  &__child{
+  &__child {
     flex-grow: 1;
   }
   &__header {
@@ -142,7 +153,7 @@ export default {
     &__icon {
       width: 3.5rem;
       height: 3.5rem;
-      background-image: url("../assets/icons/home/KALENDARZ.png");
+      background-image: url("../assets/icons/home/cale.svg");
       background-size: contain;
       margin: 0 1rem;
     }
@@ -216,7 +227,7 @@ export default {
       left: 0px;
     }
 
-    &__text-wraper{
+    &__text-wraper {
       display: flex;
       flex-direction: column;
       padding: 0.5rem;

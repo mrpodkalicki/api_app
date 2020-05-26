@@ -1,9 +1,16 @@
 <template>
   <footer class="footer">
     <div class="footer__white_box">
-      <div class="footer__white_box__lvbet"></div>
+      <a href="https://www.betclic.pl/koszykowka-s4" target="_blank">
+        <div class="footer__white_box__lvbet"></div>
+      </a>
       <!-- footer__box__lvbet -->
-      <div class="footer__white_box__betclic"></div>
+      <a
+        href="https://lvbet.pl/pl/zaklady-bukmacherskie/multiple--?leagues=43559,12396"
+        target="_blank"
+      >
+        <div class="footer__white_box__betclic"></div>
+      </a>
       <!-- do fora -->
     </div>
   </footer>
